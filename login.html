@@ -22,7 +22,7 @@
                   <a class="btn btn-ghost text-2xl font-serif">Personal Bloggin App</a>
             </div>
 
-            <div class="navbar-end mr-16">
+            <div class="navbar-end md:mr-16">
                   <button class="font-serif text-white text-xl :hovertext-yellow-50">Login</button>
             </div>
       </div>
@@ -31,7 +31,7 @@
 
       <!-- header started -->
       <div class="header bg-[#fff] p-6">
-            <header class="ml-20 text-4xl font-bold">Singup</header>
+            <header class="ml-20 text-4xl font-bold">Login</header>
       </div>
       <!-- header ended -->
       <div class="bg-gray-100 min-h-screen flex items-center justify-center">
@@ -39,24 +39,11 @@
                   <form class="justify-center text-center" id="form">
                         
                         <div class="mb-4">
-                              <input  id="frist-name" type="text" placeholder="frist name " class="input input-bordered input-info w-full max-w-xs" required minlength="3" maxlength="20"/>
-                        </div>
-                        <div class="mb-4">
-                              <input  id="last-name" type="text" placeholder="Last Name " class="input input-bordered input-info w-full max-w-xs" required minlength="1" maxlength="20"/>
-                        </div>
-                        <div class="mb-4">
                               <input  id="email" type="text" placeholder="Email" class="input input-bordered input-info w-full max-w-xs"  >
                         </div>
                         <div class="mb-4">
                               <input id="Password" type="text" placeholder="Password" class="input input-bordered input-info w-full max-w-xs" required minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z]).{8,}$" />
                         </div>
-                        <div class="mb-4">
-                              <input  id="repeat-password" type="text" placeholder="Repeat Password" class="input input-bordered input-info w-full max-w-xs" />
-                        </div>
-                        <div class="mb-4">
-                              <input id="profile-image" type="file" class="file-input file-input-bordered file-input-info w-full max-w-xs" />
-                        </div>
-                       
                         
                         <div class="flex justify-center">
                               <button  id="submit" type="submit" class="bg-[#7749F8] text-white py-3 px-6 rounded-md hover:bg-violet-600 " >Signup</button>
@@ -71,7 +58,7 @@
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
       <!-- java script link and external file -->
-      <script type="module" src="script/Register.js"></script>
+      <script type="module" src="script/login.js"></script>
 </body>
 
 </html>
