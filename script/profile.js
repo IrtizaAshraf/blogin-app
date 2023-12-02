@@ -1,7 +1,7 @@
 
 
 //. import the funtion in firestore--------->
-import { onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js';
+import { onAuthStateChanged, signOut,updatePassword } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js';
 // import  the auth  in config.js
 import { auth, db } from './config.js';
 /// import the function refrence in firestore----------->
@@ -64,6 +64,28 @@ logout.addEventListener('click', () => {
 
 
 
+// import { getAuth, updatePassword } from 'firebase/auth';
+
+// Assuming you have initialized Firebase
+// const auth = getAuth(); // Replace with your authentication instance
+
+// Get the currently signed-in user
+const user = auth.currentUser;
+
+if (user) {
+      const newPassword = document.querySelector('#newpassword'); // Replace with the new password
+
+      // Update the password
+      updatePassword(user, newPassword)
+            .then(() => {
+                  console.log('Password updated successfully');
+            })
+            .catch((error) => {
+                  console.error('Error updating password:', error.message);
+            });
+} else {
+      console.error('No user is currently signed in');
+}
 
 
 

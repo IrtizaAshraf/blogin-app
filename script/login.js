@@ -24,7 +24,7 @@ form.addEventListener('submit', (event) => {
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            modalMessage.innerHTML = 'invalid-login-credentials'
+            // modalMessage.innerHTML = 'invalid-login-credentials'
             Swal.fire({
                   icon: "error",
                   title: "Oops...",
