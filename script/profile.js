@@ -5,7 +5,7 @@ import { onAuthStateChanged, signOut,updatePassword } from 'https://www.gstatic.
 // import  the auth  in config.js
 import { auth, db } from './config.js';
 /// import the function refrence in firestore----------->
-import { collection, addDoc, getDocs, Timestamp, query, orderBy, deleteDoc, doc, updateDoc, where } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
+import { collection,  getDocs,  query,   } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
 
 
 
@@ -33,7 +33,7 @@ onAuthStateChanged(auth, async (user) => {
             const querySnapshot = await getDocs(q);
             // console.log();
             querySnapshot.forEach((doc) => {
-                  console.log(doc);
+                  // console.log(doc);
                   console.log(doc.data());
                   const lastName = doc.data().lastName;
                   const firstName = doc.data().firstName;
@@ -64,12 +64,7 @@ logout.addEventListener('click', () => {
 
 
 
-// import { getAuth, updatePassword } from 'firebase/auth';
 
-// Assuming you have initialized Firebase
-// const auth = getAuth(); // Replace with your authentication instance
-
-// Get the currently signed-in user
 const user = auth.currentUser;
 
 if (user) {
