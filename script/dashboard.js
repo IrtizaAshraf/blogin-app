@@ -7,8 +7,8 @@ const userNames = document.querySelector('#names')
 const logout = document.querySelector('#logout')
 const profileImage = document.querySelector('#image')
 const profileImages = document.querySelector('#user-image')
-const tittle = document.querySelector('#tittlet')
-const description = document.querySelector('#description')
+// const tittle = document.querySelector('#tittlet')
+// const description = document.querySelector('#description')
 const form = document.querySelector('#descriptionform')
 const card = document.querySelector('#card')
 
@@ -95,8 +95,11 @@ let arr = [];
 
 form.addEventListener('submit', async (event) => {
       event.preventDefault();
-      const postTitle = tittle.value.trim();
-      const postDescription = description.value.trim();
+      const postTitle = tittle;
+      const postDescription = description;
+
+      console.log(postTitle.value);
+      console.log(postDescription.value);
 
       if (postTitle === '' || postDescription === '') {
             alert('Please fill in both title and description.');
