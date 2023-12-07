@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- Web site name  -->
+      <title>Personal Bloggin App Register</title>
+      <!-- tailwind css link  -->
+      <link rel="stylesheet" href="style.css">
+      <!-- daysiui link  -->
+      <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.13/dist/full.min.css" rel="stylesheet" type="text/css" />
+
+      <!-- <link rel="stylesheet" href="@sweetalert2/themes/dark/dark.css"> -->
+</head>
+
+<body>
+      <!-- navbar star section  -->
+      <div class="navbar bg-[#A370F7]">
+            <div class="navbar-start ml-8">
+
+                  <a class="btn btn-ghost text-2xl font-serif">Personal Bloggin App</a>
+            </div>
+
+            <div class="navbar-end mr-16">
+                  <button class="font-serif text-white text-xl :hovertext-yellow-50">Login</button>
+            </div>
+      </div>
+      <!-- navbar  section end  -->
+
+
+      <!-- header started -->
+      <div class="header bg-[#fff] p-6">
+            <header class="ml-20 text-4xl font-bold">Singup</header>
+      </div>
+      <!-- header ended -->
+      <div class="bg-gray-100 min-h-screen flex items-center justify-center">
+            <div class="bg-white  p-8 rounded-lg shadow-md max-w-md w-full hover:border-sky-400 border-4">
+                  <form class="justify-center text-center" id="form">
+                        
+                        <div class="mb-4">
+                              <input  id="frist-name" type="text" placeholder="frist name " class="input input-bordered input-info w-full max-w-xs" required minlength="3" maxlength="20"/>
+                        </div>
+                        <div class="mb-4">
+                              <input  id="last-name" type="text" placeholder="Last Name " class="input input-bordered input-info w-full max-w-xs" required minlength="1" maxlength="20"/>
+                        </div>
+                        <div class="mb-4">
+                              <input  id="email" type="text" placeholder="Email" class="input input-bordered input-info w-full max-w-xs"  >
+                        </div>
+                        <div class="mb-4">
+                              <input id="Password" type="text" placeholder="Password" class="input input-bordered input-info w-full max-w-xs" required minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z]).{8,}$" />
+                        </div>
+                        <div class="mb-4">
+                              <input  id="repeat-password" type="text" placeholder="Repeat Password" class="input input-bordered input-info w-full max-w-xs" />
+                        </div>
+                        <div class="mb-4">
+                              <input id="profile-image" type="file" class="file-input file-input-bordered file-input-info w-full max-w-xs" />
+                        </div>
+                       
+                        
+                        <div class="flex justify-center">
+                              <button  id="submit" type="submit" class="bg-[#7749F8] text-white py-3 px-6 rounded-md hover:bg-violet-600 " >Signup</button>
+                        </div>
+                  </form>
+                  <p class="text-center mt-4"> Have Account! <a href="login.html"><span class="text-blue-700 cursor-pointer hover:text-blue-500">Login  Now</span></a></p>
+            </div>
+      </div>
+
+      <!-- daysi ui script link -->
+      <script src="https://cdn.tailwindcss.com"></script>
+      <!-- sweetalert2 script ilnk  -->
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+      <!-- java script link and external file -->
+      <script type="module" src="script/Register.js"></script>
+</body>
+
+</html>

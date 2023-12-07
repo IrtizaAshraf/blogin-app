@@ -7,8 +7,8 @@ const userNames = document.querySelector('#names')
 const logout = document.querySelector('#logout')
 const profileImage = document.querySelector('#image')
 const profileImages = document.querySelector('#user-image')
-// const tittle = document.querySelector('#tittlet')
-// const description = document.querySelector('#description')
+const tittle = document.querySelector('#tittle')
+const description = document.querySelector('#description')
 const form = document.querySelector('#descriptionform')
 const card = document.querySelector('#card')
 
@@ -67,31 +67,34 @@ logout.addEventListener('click', () => {
 // get data from fire store start
 let arr = [];
 
+
+
 //post data on firestore
 
-// form.addEventListener('submit', async (event) => {
-//       event.preventDefault();
+// form.addEventListener("submit" , async (e)=>{
+//       e.preventDefault();
 //       console.log(tittle.value);
 //       console.log(description.value);
-//       // console.log(tittle.value);
-//       // try {
-//       //       const postObj = {
-//       //             tittle: tittle.value,
-//       //             description: description.value,
-//       //             uid: auth.currentUser.uid,
-//       //             postDate: formattedTime
-//       //       }
-//       // console.log(postObj);
-//       //       const docRef = await addDoc(collection(db, "posts"), postObj);
-//       //       console.log("Document written with ID: ", docRef.id);
-//       //       postObj.docId = docRef.id;
-//       //       arr = [postObj, ...arr];
-//       //       console.log(arr);
-//       //       // renderPost();
-//       // } catch (e) {
-//       //       console.error("Error adding document: ", e);
-//       // }
+//       const obj ={
+//           title: tittle.value,
+//           Description: description.value,
+//           uid:auth.currentUser.uid,
+//           postDate: Timestamp.fromDate(new Date())
+//       }
+//       try {
+//           const docRef = await addDoc(collection(db, "posts"),obj);
+//           console.log("Document written with ID: ", docRef.id);
+//           console.log(arr);
+//         } catch (e) {
+//           console.error("Error adding document: ", e);
+//         }
+//         arr.push(obj)
 // })
+
+
+
+
+
 
 form.addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -105,19 +108,19 @@ form.addEventListener('submit', async (event) => {
             alert('Please fill in both title and description.');
       } else {
             try {
-                  const user = auth.currentUser.user.uid;
+                  const user = auth.currentUser;
                   const postObj = {
                         title: postTitle,
                         description: postDescription,
-                        uid: user.uid,
-                        postDate: Timestamp.fromDate(new Date())
+                        uid: user,
+                        postDate: formattedTime
                   };
                   const docRef = await addDoc(collection(db, "posts"), postObj);
                   console.log("Document written with ID: ", docRef.id);
                   postObj.docId = docRef.id;
                   arr = [postObj, ...arr];
                   console.log(arr);
-                  title.value = '';
+                  tittle.value = '';
                   description.value = '';
                   renderPost();
             } catch (error) {
@@ -128,31 +131,28 @@ form.addEventListener('submit', async (event) => {
 
 // render list in hmoepage........
 function renderPost() {
-      // card.innerHTML = ''
+      card.innerHTML = ''
       arr.map((item) => {
+            const postimg = user ? user.profileUrl : '';
+
             card.innerHTML += `
-            <div class="bg-white p-8 rounded-lg mb-5  shadow-lg max-w-xl ml-40 w-full " id="main-content">
+            <div class="bg-white p-8 rounded-lg mb-5 shadow-2xl max-w-xl ml-40 w-full">
             <div class="flex gap-5">
-                  <div class="mb-4 text-center">
-                        <img id="user-image" src="${doc.data().profileUrl} "
-                              class="rounded-xl w-20 h-20 mb-4">
-                  </div>
-                  <div class="w-1/2">
-                        <h2 class="text-xl font-bold text-[#212529]">${item.title}
-                        </h2>
-                        <h5 class="text-sm mt-1 text-[#6C757D]">Inzamam Malik - Auguest 16th, 2023</h5>
-                  </div>
+                <div class="mb-4 text-center">
+                    <img src="${postimg}" class="rounded-xl w-20 h-20 mb-4" id="blog-img">
+                </div>
+                <div class="w-1/2">
+                    <h2 class="text-xl font-bold text-[#212529]">${item.title}</h2>
+                    <h5 class="text-sm mt-1 text-[#6C757D]">${user.firstName} ${user.lastName} ${formattedTime}</h5>
+                </div>
             </div>
-
-            <P class="text-[#6C757D] text-xs mt-3 leading-relaxed">
-                  
-            </P>
-
+            <p class="text-[#6C757D] text-sm mt-3 whitespace-normal break-words">
+                ${item.Description}
+            </p>
             <div class="flex mt-3 text-sm">
-                  <a href="#" class=" bg-transparent border-none text-[#7749F8]  mr-20">Delete</a>
-                  <a href="#" class=" bg-transparent border-none text-[#7749F8]  mr-20">Edit</a>
+                <a href="userblog.html" class="bg-transparent border-none text-[#7749F8]  mr-20" id="user-link">See all from this user</a>
             </div>
-      </div>
+        </div>
       `
       })
 
@@ -184,48 +184,22 @@ function renderPost() {
             })
       })
 
-      // const del = document.querySelectorAll('.btn-danger');
-      // const upd = document.querySelectorAll('.btn-info');
-
-      // del.forEach((btn) => {
-      //     btn.addEventListener('click', async (e) => {
-      //         const index = arr.findIndex(item => item.docId === e.target.dataset.index);
-      //         console.log('delete called', arr[index]);
-      //         await deleteDoc(doc(db, "todolist", arr[index].docId));
-      //         arr.splice(index, 1);
-      //         renderPost();
-      //     });
-      // });
-
-      // upd.forEach((btn) => {
-      //     btn.addEventListener('click', async (e) => {
-      //         const index = arr.findIndex(item => item.docId === e.target.dataset.index);
-      //         console.log('update called', arr[index]);
-
-      //         const updatedList = prompt('Enter new Title');
-      //         if (updatedList !== null) {
-      //             await updateDoc(doc(db, "todolist", arr[index].docId), {
-      //                 todoinput: updatedList
-      //             });
-      //             arr[index].todoinput = updatedList;
-      //             renderPost();
-      //         }
-      //     });
-      // });
+      
 }
+renderPost()
 
-// async function getDataFromFirestore() {
-//       arr.length = 0;
-//       const q = query(collection(db, "posts"), orderBy('postDate', 'desc'));
-//       const querySnapshot = await getDocs(q);
-//       querySnapshot.forEach((doc) => {
-//             console.log(doc.data());
-//             arr.push({ ...doc.data(), docId: doc.id });
-//       });
-//       console.log(arr);
-//       renderPost();
-// }
-// getDataFromFirestore()
+async function getDataFromFirestore() {
+      arr.length = 0;
+      const q = query(collection(db, "posts"), orderBy('postDate', 'desc'));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+            console.log(doc.data());
+            arr.push({ ...doc.data(), docId: doc.id });
+      });
+      console.log(arr);
+      renderPost();
+}
+getDataFromFirestore()
 
 
 //post data on firestore
