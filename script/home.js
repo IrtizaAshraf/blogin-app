@@ -12,7 +12,8 @@ const userName = document.querySelector('#names')
 let Loginuser = false
 onAuthStateChanged(auth, async(user) => {
     if (user) {
-        const q = query(collection(db, "users"));
+        const uid = user.uid;
+        const q = query(collection(db, "users"),where("uid", "==", uid));
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
               // console.log(doc);
