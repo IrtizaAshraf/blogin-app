@@ -5,7 +5,7 @@ import { onAuthStateChanged, signOut,updatePassword } from 'https://www.gstatic.
 // import  the auth  in config.js
 import { auth, db } from './config.js';
 /// import the function refrence in firestore----------->
-import { collection,  getDocs,  query,   } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
+import { collection,  getDocs,  query,  where } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
 
 
 
@@ -29,7 +29,7 @@ onAuthStateChanged(auth, async (user) => {
             const uid = user.uid;
             console.log(uid);
             // get user data start
-            const q = query(collection(db, "users"));
+            const q = query(collection(db, "users"), where('uid', '==', uid));
             const querySnapshot = await getDocs(q);
             // console.log();
             querySnapshot.forEach((doc) => {
@@ -37,8 +37,8 @@ onAuthStateChanged(auth, async (user) => {
                   console.log(doc.data());
                   const lastName = doc.data().lastName;
                   const firstName = doc.data().firstName;
-                  userName.innerHTML = lastName + ' ' + firstName;
-                  userNames.innerHTML = lastName + ' ' + firstName;
+                  userName.innerHTML = firstName + ' ' + lastName;
+                  userNames.innerHTML = firstName + ' ' + lastName;
                   profileImage.src = doc.data().profileUrl
                   profileImages.src = doc.data().profileUrl
             });
@@ -68,7 +68,8 @@ logout.addEventListener('click', () => {
 const user = auth.currentUser;
 
 if (user) {
-      const newPassword = document.querySelector('#newpassword'); // Replace with the new password
+      // Replace with the new password
+      const newPassword = document.querySelector('#newpassword'); 
 
       // Update the password
       updatePassword(user, newPassword)

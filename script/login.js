@@ -19,7 +19,7 @@ form.addEventListener('submit', (event) => {
         .then((userCredential) => {
             const user = userCredential.user;
             console.log(user);
-            window.location = 'profile.html'
+            window.location = 'index.html'
         })
         .catch((error) => {
             const errorCode = error.code;
