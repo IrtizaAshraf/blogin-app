@@ -157,9 +157,7 @@ function renderPost() {
                   <p class="text-[#6C757D] text-sm mt-3 whitespace-normal break-words">
                       ${item.description}
                   </p>
-                  <div class="flex mt-3 text-sm">
-                      <a href="userblog.html" class="bg-transparent border-none text-[#7749F8]  mr-20" id="user-link">See all from this user</a>
-                  </div>
+                  
                   <div class="post" data-post-id="postId">
                         <!-- ... Other post content ... -->
                         <button class="like-button">Like</button>
@@ -279,3 +277,22 @@ async function getDataFromFirestore(uid) {
 
 //post data on firestore
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// this is code in another file==->
+/* <div class="flex mt-3 text-sm">
+                      <a href="userblog.html" class="bg-transparent border-none text-[#7749F8]  mr-20" id="user-link">See all from this user</a>
+                  </div> */
