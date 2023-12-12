@@ -17,13 +17,15 @@ onAuthStateChanged(auth, async(user) => {
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
               // console.log(doc);
-           
+            //   console.log(doc.data());
+            //   userObj = doc.data()
+            //   console.log(userObj);
               const lastName = doc.data().lastName;
               const firstName = doc.data().firstName;
               userName.innerHTML = firstName + ' ' + lastName;
-          
+            //   userNames.innerHTML = firstName + ' ' + lastName;
               profileImage.src = doc.data().profileUrl
-            
+            //   profileImages.src = doc.data().profileUrl
         });
         console.log(user);
         Loginuser = true
@@ -36,24 +38,22 @@ onAuthStateChanged(auth, async(user) => {
     }
 });
 
-///////// logout  section ------->
 logoutBtn.addEventListener('click', () => {
     signOut(auth).then(() => {
-        console.log('logout successfull');
-        window.location = 'login.html'
+          console.log('logout successfull');
+          window.location = 'login.html'
     }).catch((error) => {
-        console.log(error);
+          console.log(error);
     });
 })
-///////// logout  section ------->
 
 
-/// Times and  date and  day start-------->
 
 const currentTime = new Date();
 const currentHour = currentTime.getHours();
 const time = document.querySelector('#time');
 
+// Times of the day started
 
 let greeting;
 if (currentHour >= 5 && currentHour < 12) {
@@ -70,28 +70,20 @@ console.log(greeting);
 const text = document.createTextNode(`${greeting} Readers!`);
 time.appendChild(text);
 
-//// Times of the day end-------->
+// Times of the day ended
 
-
-
-////// fetchuserdata in firestore------------->
 const fetchUserData = async () => {
     const usersQuerySnapshot = await getDocs(collection(db, "users"));
     return usersQuerySnapshot.docs.map(user => user.data());
 };
 
-////// fetchuserdata in firestore------------->
-
-
-////// fetchuserpost in firestore------------->
 const fetchPosts = async () => {
     const postsQuerySnapshot = await getDocs(collection(db, "posts"));
     return postsQuerySnapshot.docs.map(doc => ({ ...doc.data(), docId: doc.id }));
 };
-////// fetchuserpost in firestore------------->
 
 
-// Render all blogs start -------->
+// Render all blogs started
 
 const rightNow = new Date();
 const day = rightNow.getDate();
@@ -131,22 +123,19 @@ const renderAllBlogs = async () => {
         const postimg = user ? user.profileUrl : '';
 
         AllBlogsContainer.innerHTML += `
-        <div class="bg-white p-8 rounded-lg mb-5 shadow-2xl max-w-xl ml-40 w-full">
+        <div class="bg-white  p-8 rounded-lg mb-5 shadow-2xl max-w-xl ml-40 w-full ">
             <div class="flex gap-5">
                 <div class="mb-4 text-center">
                     <img src="${postimg}" class="rounded-xl w-20 h-20 mb-4" id="blog-img">
                 </div>
                 <div class="w-1/2">
-                   <a href="userblog.html?uid=${user.uid}" <h2 class="text-xl font-bold text-[#212529]">${item.title}</h2></a>
+                    <h2 class="text-xl font-bold text-[#212529]">${item.title}</h2>
                     <h5 class="text-sm mt-1 text-[#6C757D]">${user.firstName} ${user.lastName} ${formattedTime}</h5>
                 </div>
             </div>
             <p class="text-[#6C757D] text-sm mt-3 whitespace-normal break-words">
                 ${item.description}
             </p>
-            <div class="flex mt-3 text-sm">
-            <a href="userblog.html?uid=${user.uid}" class="bg-transparent border-none text-[#7749F8]  mr-20" id="user-link">See all from this user</a> 
-            </div>
             
         </div> `;
 

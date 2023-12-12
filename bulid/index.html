@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Blogging App</title>
+      <link rel="stylesheet" href="output.css">
+      <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.8/dist/full.min.css" rel="stylesheet" type="text/css" />
+      <script src="https://cdn.tailwindcss.com"></script>
+      <script src="https://kit.fontawesome.com/da698ad306.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+      <div>
+            <!-- navbar started -->
+            <div class="navbar bg-[#A370F7]">
+                  <div class="flex-1">
+                        <a class="btn btn-ghost text-xl font-extrabold">Personal Blogging App</a>
+                  </div>
+                  <div class="flex-none gap-2">
+                        <div class="form-control">
+                              <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
+                        </div>
+                        <div class="dropdown dropdown-end">
+                              <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                                    <div class="w-10 rounded-full">
+                                          <img id="image" alt="User Profile"
+                                                src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                    </div>
+                              </div>
+                              <ul tabindex="0"
+                                    class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                                    <li>
+                                          <a class="justify-between" href="profile.html">
+                                                Profile
+                                                <span class="badge" id="names">New</span>
+                                          </a>
+                                    </li>
+                                    <li><a href="dashboard.html">DashBoard</a></li>
+                                    <li><a id="logout" href="login.html">Logout</a></li>
+                                   
+                                    
+                              </ul>
+                        </div>
+                  </div>
+            </div>
+            <!-- navbar  section end -->
+
+
+            <!-- header started -->
+            <div class="header bg-[#fff] p-6">
+                  <header class="ml-20 text-3xl font-bold" id="time"></header>
+            </div>
+            <!-- header ended -->
+
+            <div class="bg-gray-100 min-h-full flex flex-col">
+                  <h2 class="ml-40 mt-6 mb-4 font-bold text-2xl">All Blogs</h2>
+
+                  <div id="AllBlogsContainer">
+
+                  </div>
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+      </div>
+      <script type="module" src="./script/home.js"></script>
+</body>
+
+</html>

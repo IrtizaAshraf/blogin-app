@@ -203,7 +203,7 @@ function renderPost() {
             const postSnapshot = await getDocs(postRef);
             const currentLikes = postSnapshot.data().likes || 0;
 
-
+            
             const updateData = {
                   likes: increment(1),
                   // other fields...
@@ -294,5 +294,5 @@ async function getDataFromFirestore(uid) {
 
 // this is code in another file==->
 /* <div class="flex mt-3 text-sm">
-      <a href="userblog.html" class="bg-transparent border-none text-[#7749F8]  mr-20" id="user-link">See all from this user</a>
-</div> */
+                      <a href="userblog.html" class="bg-transparent border-none text-[#7749F8]  mr-20" id="user-link">See all from this user</a>
+                  </div> */

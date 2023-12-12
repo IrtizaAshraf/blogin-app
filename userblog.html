@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,18 +10,43 @@
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <script src="https://kit.fontawesome.com/da698ad306.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <div>
-        <!-- Navbar -->
-        <div class="navbar bg-[#7749F8]">
-            <div class="navbar-start">
-                <a class="text-xl text-white ml-10">Personal Blogging App</a>
+        <!-- navbar started -->
+        <div class="navbar bg-[#A370F7]">
+            <div class="flex-1">
+                <a class="btn btn-ghost text-xl font-extrabold" href="index.html">Personal Blogging App</a>
             </div>
+            <div class="flex-none gap-2">
+                <div class="form-control">
+                    <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
+                </div>
+                <div class="dropdown dropdown-end">
+                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                        <div class="w-10 rounded-full">
+                            <img id="image" alt="User Profile"
+                                src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                        </div>
+                    </div>
+                    <ul tabindex="0"
+                        class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                        <li>
+                            <a class="justify-between" href="profile.html">
+                                Profile
+                                <span class="badge" id="names">New</span>
+                            </a>
+                        </li>
+                        <li><a href="dashboard.html">DashBoard</a></li>
+                        <li><a id="logout" href="index.html">Home</a></li>
 
-            <div class="navbar-end">
-                <a href="login.html" class="bg-transparent border-none text-white mr-10">Login</a>
+
+                    </ul>
+                </div>
             </div>
         </div>
+        <!-- navbar  section end -->
+
 
         <!-- Header -->
         <div class="header bg-[#fff] p-6">
@@ -29,12 +55,30 @@
 
         <div class="bg-gray-100 min-h-screen flex flex-col">
             <h2 class="ml-40 mt-6 mb-4 font-bold text-2xl" id="userName">All from</h2>
-            <div class="user-blogs-container">
+            
+
+
+
+            <div class="right text-right">
+                <div class="text-lg" id="useremail">abc@gmail.com</div>
+                <div class="text-xl font-bold text-[#787afc]" id="username"></div>
+                <div class="img" style="display: block; margin-left: 80%;
+                margin-right: auto;"> <!-- Add style attribute for text-align -->
+                    <img id="userImg" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwonderfulengineering.com%2Fwp-content%2Fuploads%2F2014%2F10%2Fimage-wallpaper-15.jpg&amp;f=1&amp;nofb=1&amp;ipt=678c8829213589845fa3c9d4931962b0a5c5b9dbb0c16331a383d9e8cadadf38&amp;ipo=images" class="w-[300px] h-[200px] rounded-lg" alt="">
+                </div>
+            </div>
+            
+            <div id="UserBlogsContainer">
 
             </div>
+
+
         </div>
-      </div>
+
+    </div>
+    </div>
 
     <script type="module" src="./script/userblog.js"></script>
 </body>
+
 </html>
