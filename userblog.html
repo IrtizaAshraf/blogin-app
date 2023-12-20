@@ -7,7 +7,7 @@
     <title>Blogging App</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.8/dist/full.min.css" rel="stylesheet" type="text/css" />
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/da698ad306.js" crossorigin="anonymous"></script>
 </head>
 
@@ -20,7 +20,7 @@
             </div>
             <div class="flex-none gap-2">
                 <div class="form-control">
-                    <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
+                    <input id="search-value" type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
                 </div>
                 <div class="dropdown dropdown-end">
                     <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
@@ -54,36 +54,11 @@
         </div>
         <!-- Header section end -->
 
-        <div class="bg-gray-100 min-h-screen flex flex-col ">
+     
 
-            <div  class="fixed">
-             <h2 class="ml-40 mt-6 mb-4 font-bold text-2xl" id="userName">All from</h2>
-            </div>
-
-
-            <div class="fixed">
-                <div class="right text-right block">
-                    <div class="text-lg" id="useremail">abc@gmail.com</div>
-                    <div class="text-xl font-bold text-[#787afc]" id="username"></div>
-                    <div class="img" style="display: block; margin-left: 80%;
-                    margin-right: auto;"> 
-                        <img id="userImg"
-                            src=""
-                            class="w-[300px] h-[200px] rounded-lg" alt="">
-                    </div>
-                </div>
-
-                <div id="UserBlogsContainer">
-
-                </div>
-            </div>
-
-
-        </div>
-
-        <!-- <div class="bg-gray-100">
-            <div class="fixed">
-                <h2 class="ml-40 mt-6 mb-4 font-bold text-2xl fixed" id="userName">All from</h2>
+        <div class="bg-gray-100">
+            <div class=" p-4">
+                <h2 class="ml-40 mt-8 mb-4 font-bold text-2xl  " id="userName">All from</h2>
             </div>
 
 
@@ -91,16 +66,15 @@
                 <div id="UserBlogsContainer">
 
                 </div>
-                <div class="right text-right block">
-                    <div class="text-lg" id="useremail">abc@gmail.com</div>
+                <div class="right text-right  p-8 ml-8">
+                    <div class="text-xl  text-[#3e40b0] " id="useremail">abc@gmail.com</div>
                     <div class="text-xl font-bold text-[#787afc]" id="username"></div>
-                    <div class="img" style="display: block; margin-left: 80%;
-                margin-right: auto;"> Add style attribute for text-align
-                        <img id="userImg" src="" class="w-[50%px] h-[50%] rounded-lg" alt="">
+                    <div class="img"> 
+                        <img id="userImg" src="" class="w-[300px] h-[200px] rounded-lg" alt="">
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
 
     </div>
 

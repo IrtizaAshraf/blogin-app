@@ -2,11 +2,11 @@ import { onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/
 import { auth, db } from './config.js';
 import { collection, addDoc, getDocs, Timestamp, query, orderBy, deleteDoc, doc, updateDoc, where, increment, } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
 
+const Name = document.querySelector('#name')
 const userName = document.querySelector('#names')
 const userNames = document.querySelector('#names')
 const logout = document.querySelector('#logout')
 const profileImage = document.querySelector('#image')
-const profileImages = document.querySelector('#user-image')
 const form = document.querySelector('#form')
 const card = document.querySelector('#card')
 
@@ -41,10 +41,11 @@ onAuthStateChanged(auth, async (user) => {
                   console.log(userObj);
                   const lastName = doc.data().lastName;
                   const firstName = doc.data().firstName;
+                  Name.innerHTML = firstName + ' ' + lastName;
                   userName.innerHTML = firstName + ' ' + lastName;
                   userNames.innerHTML = firstName + ' ' + lastName;
                   profileImage.src = doc.data().profileUrl
-                  profileImages.src = doc.data().profileUrl
+                
             });
 
             // get user data end

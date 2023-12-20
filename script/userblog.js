@@ -135,10 +135,10 @@
 
 
 
-const updateUserName = (userName) => {
-    const userFullNameElement = document.getElementById('userName');
-    userFullNameElement.textContent = `All from ${userName}`;
-};
+// const updateUserName = (userName) => {
+//     const userFullNameElement = document.getElementById('userName');
+//     userFullNameElement.textContent = `All from ${userName}`;
+// };
 
 
 
@@ -156,6 +156,7 @@ import { auth, db } from './config.js';
 
 
 
+const searchVal = document.querySelector("#search-value");
 
 const userNames = document.querySelector('#names')
 
@@ -166,31 +167,31 @@ const specificpfp = document.querySelector("#userImg");
 
 
 
-
+let arr = []
 
 
 onAuthStateChanged(auth, async (user) => {
     if (user) {
-          const uid = user.uid;
-          console.log(uid);
-          // get user data start
-          const q = query(collection(db, "users"), where('uid', '==', uid));
-          const querySnapshot = await getDocs(q);
-          // console.log();
-          querySnapshot.forEach((doc) => {
-                // console.log(doc);
-                console.log(doc.data());
-                const lastName = doc.data().lastName;
-                const firstName = doc.data().firstName;
-                userNames.innerHTML = firstName + ' ' + lastName;
-                profileImage.src = doc.data().profileUrl;
-                
-                
-            });
-      
-            // get user data end
-        } else {
-            window.location = './index.html'
+        const uid = user.uid;
+        console.log(uid);
+        // get user data start
+        const q = query(collection(db, "users"), where('uid', '==', uid));
+        const querySnapshot = await getDocs(q);
+        // console.log();
+        querySnapshot.forEach((doc) => {
+            // console.log(doc);
+            console.log(doc.data());
+            const lastName = doc.data().lastName;
+            const firstName = doc.data().firstName;
+            userNames.innerHTML = firstName + ' ' + lastName;
+            profileImage.src = doc.data().profileUrl;
+
+
+        });
+
+        // get user data end
+    } else {
+        window.location = './index.html'
     }
 });
 
@@ -204,14 +205,14 @@ const renderUserBlogs = async () => {
         const userQuery = query(collection(db, 'users'), where('uid', '==', userId));
         const userSnapshot = await getDocs(userQuery);
         const user = userSnapshot.docs.map(doc => doc.data())[0];
-        
+
         if (user) {
             // Create a Firestore query for the 'posts' collection
             const userBlogsQuery = query(collection(db, 'posts'), where('uid', '==', userId));
             const userBlogsSnapshot = await getDocs(userBlogsQuery);
             const userBlogs = userBlogsSnapshot.docs.map(doc => ({ ...doc.data(), docId: doc.id }));
             console.log(userBlogs);
-            
+
             const userBlogsContainer = document.querySelector('#UserBlogsContainer');
             userBlogs.forEach(item => {
                 const postTime = new Date(item.postDate.seconds * 1000).toLocaleDateString('en-US', {
@@ -219,16 +220,16 @@ const renderUserBlogs = async () => {
                     day: 'numeric',
                     year: 'numeric'
                 });
-                
+
                 let postImg = '';
-                
+
                 if (user) {
                     postImg = user.profileUrl || '';
                 }
-                
+
                 specificpfp.src = postImg;
-                userName.innerHTML = `<h5 class="text-sm mt-1 text-[#6C757D]">${user.firstName} ${user.lastName} </h5>`;
-                useremail.innerHTML = `<h1 class="text-sm mt-1 text-[#6C757D]">${user.email} </h1>`;
+                userName.innerHTML = `<h5 class="text-sm mt-1 text-[#2340a0d4]">${user.firstName} ${user.lastName} </h5>`;
+                useremail.innerHTML = `<h1 class="text-sm mt-1 text-[#273a78]">${user.email} </h1>`;
                 const blogHTML = `
                     <div class="bg-white p-8 rounded-lg mb-5 shadow-2xl max-w-xl ml-40 w-full">
                         <div class="flex gap-5">
@@ -252,6 +253,56 @@ const renderUserBlogs = async () => {
     }
 };
 
+
+
+
+searchVal.addEventListener("input", () => {
+    const filteredVal = searchVal.value.toLowerCase();
+    // console.log(filteredVal);
+    const filteredArr = arr.filter((item) => {
+        return (
+            item.title.toLowerCase().includes(filteredVal) ||
+            item.caption.toLowerCase().includes(filteredVal)
+        );
+    });
+    (filteredArr);
+});
+
 document.addEventListener("DOMContentLoaded", async () => {
     await renderUserBlogs();
 });
+
+
+
+
+
+function printt(posts) {
+    div.innerHTML = "";
+    posts.forEach((item, index) => {
+        div.innerHTML += `
+    <div style="font-family: 'Poppins', sans-serif;" class="bg-white  p-8 rounded-lg my-5  shadow-2xl max-w-xl  w-full " >
+       <div class="flex gap-5">
+       <div class="mb-4 text-center">
+           <img src="${item.photoURL
+            }" class="object-contain rounded-xl  w-32 h-32 mb-4" id="blog-img">
+       </div>
+        <div class="w-1/2">
+        <h1 class="  text-3xl text-[#212529]">${item.title}</h1>
+        <div  class="">
+        <h3 class="text-sm mt-1 text-[#6C757D]">${item.displayName}</h5>
+        <h3 class="text-sm mt-1  text-[#6C757D]"> ${formatDate(
+                        item.postDate
+                    )}</h3></div>
+        </div>
+          </div > 
+        
+           <div class=" relative">
+        
+           <p  class="text-[#868686]  text-[14px] font-light mt-2 whitespace-normal break-words">
+           ${item.caption}
+           </p>
+           </div>
+           </div>
+          `;
+            });
+}
